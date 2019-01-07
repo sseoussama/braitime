@@ -1,0 +1,68 @@
+<div class="mega-search">
+
+	{{!-- search results --}}
+	<div class="narrow-container">
+	    {{{ snippet "forms_search"}}}
+	    <form class="form" action="{{urls.search}}">
+	        <fieldset class="form-fieldset">
+	            <div class="form-field">
+	                <label class="is-srOnly" for="search_query">{{lang "search.quick_search.input_label"}}</label>
+	                <input class="form-input" data-search-quick name="search_query" id="search_query" data-error-message="{{lang 'search.error.empty_field'}}" placeholder="{{lang 'search.quick_search.input_placeholder'}}" autocomplete="off">
+	                <p><i class="fas clear fa-times-circle"></i></p>
+	                {{!-- <i class="fas fa-search"></i> --}}
+	            </div>
+	        </fieldset>
+	    </form>
+	</div>
+	<div class="container">
+    	<section class="quickSearchResults" data-bind="html: results"></section>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+    var search_field = $('[data-search-quick]');
+    var aside_width = $('aside#aside').outerWidth();
+    var results_container = $('section.quickSearchResults');
+    var clear_icon = $('i.clear');
+
+    results_container.css('width', aside_width+'px'); //max width for results
+    
+    search_field.on('input', function() { //detect input change
+        hide_results($(this));
+    });
+
+    clear_icon.click( function(){
+        hide_results($(this));
+        search_field.val('');
+    });
+
+    // dont allow enter
+    search_field.keydown(function (e){
+        if(e.keyCode == 13){
+            e.preventDefault();
+            return false;
+        }
+    })
+
+    function hide_results(this1) {
+        if(this1.val().length<=2){
+            results_container.html('').addClass('hide');
+        }else{
+            results_container.removeClass('hide');
+            limit();
+        }
+
+        if(this1.val().length>0){
+            console.log('show');
+            clear_icon.show();
+        }else{
+            console.log('hide');
+            clear_icon.hide();
+        }
+    }
+
+</script>
+
+

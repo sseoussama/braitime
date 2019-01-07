@@ -1,0 +1,28 @@
+<div class="productPage pr" data-productPage> 
+    {{#if customer.id}}
+        <a class="Edit mono" target="_blank" href="https://store-xba1p2i5uz.mybigcommerce.com/manage/products/{{product.id}}/edit">EDIT</a>
+    {{/if}}
+    <div class="columns pr m0">
+        <div class="column col-left">
+            {{> components/cloudnav/products/left schema=true}}
+        </div>
+        <div class="column pr col-right is-6">
+            {{> components/cloudnav/products/right schema=true}}
+            {{> components/cloudnav/products/cta schema=true}}
+        </div>
+    </div>
+    {{> components/cloudnav/products/below schema=true}}
+</div>
+
+
+
+<style>
+    .Edit {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 1.5em;
+        color: #fff;
+        z-index: 1;
+    }
+</style>

@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html class="no-js" lang="{{ locale_name }}">
+    <head>
+        <title>{{ head.title }}</title>
+        {{{ head.meta_tags }}}
+        {{{ head.config }}}
+        {{#block "head"}} {{/block}}
+        <meta property="og:image" content="https://cdn7.bigcommerce.com/s-kg0otnmpzw/product_images/uploaded_images/biltong-styled14.jpg?t=1538750492" />
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        {{{stylesheet '/assets/css/theme.css'}}}
+        {{ getFontsCollection }}
+        <script src="{{cdn 'assets/modernizr-custom.js'}}"></script>
+
+        {{{head.scripts}}}
+        {{{head.rsslinks}}}
+
+        {{inject 'themeSettings' theme_settings}}
+        {{inject 'genericError' (lang 'common.generic_error')}}
+        {{inject 'maintenanceMode' settings.maintenance}}
+        {{inject 'template' template}}
+        {{inject 'urls' urls}}
+        {{inject 'newProducts' products.new}}
+        {{{snippet 'htmlhead'}}}
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+    </head>
+    <body class="inside">
+
+        <div class="blackout"></div>
+        <div class="whiteout"></div>
+        
+        <input type="hidden" id="currentUser" value="{{customer.email}}" name="">
+        {{{snippet 'header'}}}
+        <div class="icons-svg-sprite">{{> components/common/icons/icon-defs }}</div>
+
+        {{#if settings.privacy_cookie}}
+            {{> components/common/cookie}}
+        {{/if}}
+        
+        <div class="base pr">
+
+        {{> components/cloudnav/header }}
+        {{> components/common/body }}
+        {{> components/cloudnav/footer }}
+        </div>
+
+        <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+        <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+
+        <script>
+            // Exported in app.js
+            window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+
+            setTimeout( function() {
+                $('.whiteout').fadeOut();
+            }, 1000);
+            $('.alertBox').click( function() {
+                $(this).remove();
+            });
+        </script>
+        {{{footer.scripts}}} 
+        {{{snippet 'footer'}}}
+        <script>
+            // var jsContext = JSON.parse({{jsContext}});
+            // console.log(jsContext.newProducts,'**');
+        </script>
+
+
+    </body>
+</html>

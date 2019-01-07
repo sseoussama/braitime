@@ -1,0 +1,108 @@
+{{!-- {{#if banners.top}}
+<div class="banners" data-banner-location="top">
+    <div class="banner">
+        {{{limit banners.top 1}}}
+    </div>
+</div>
+{{/if}} --}}
+
+
+<div class="notifications">
+    
+    <!-- free shipping msg -->
+    <!-- <div class="inner  closing" data-cookie="free-shipping-msg">
+        <p class="f"><i class="fas fa-truck"></i> Free Shipping On Orders Over $25</p>
+        <div class="more">Discount Visible In Cart</div>
+        <div class="close"> <i class="fa fa-times"></i> </div>
+    </div> -->
+
+    <!-- register msg -->
+    {{#if customer.email}}{{else}}
+    <div class="inner closing" data-cookie="register-msg">
+        <p class="f"><a href="{{urls.auth.create_account}}">Register an account</a> to receive 10% off <i
+        class="fas fa-info-circle"></i></p>
+        <div class="more">Find Coupon Code In Confirmation Email</div>
+        <div class="close"> <i class="fa fa-times"></i> </div>
+    </div>
+    {{/if}}
+
+</div>
+
+
+
+
+<header class="header" role="banner">
+    {{#if banners.top}}
+        <div class="banners darker-bg closing" data-banner-location="top">
+            <div class="banner">
+                {{{limit banners.top 1}}}
+            </div>
+            <div class="close"> <i class="fa fa-times"></i> </div>
+        </div>
+    {{/if}}
+    <div class="above-nav-info">
+        <div class="container">
+            <div class="level is-mobile">
+                <div class="level-left">
+                    {{> components/cloudnav/account-links}}
+                </div>
+                <div class="level-right">
+                    <div class="it">Call for Monthly Subscriptions <a href="tel:18773799677">1-877-DRY WORS(379 9677)</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tablet-lgo">
+        <a href="/"><img src="{{cdn 'img/Braaitime_logo_white.png'}}" alt="" class="logo-img"></a>
+    </div>
+    <div class="container">
+        <div class="level">
+            <div class="level-left lgo level-edge">
+                <div class="level-item">
+                    <a href="/"><img src="{{cdn 'img/Braaitime_logo_white.png'}}" alt="" class="logo-img"></a>
+                </div>
+            </div>
+            <div class="level-item main-nav" data-menu>
+                {{> components/cloudnav/navigation}}
+            </div>
+            <div class="level-right account-menu level-edge">
+                <div class="level-item">
+                    {{!-- {{> components/common/navigation}} --}}
+                    {{> components/cloudnav/account-menu}}
+                </div>
+            </div>
+        </div>
+        {{{region name="header_bottom"}}}
+    </div>
+</header>
+
+
+
+
+<script>
+    // check if msg was seen already
+    $('[data-cookie]').each( function(){
+        var cookie_name = $(this).data('cookie');
+        if(!$.cookie(cookie_name)) {
+            $(this).addClass('show');
+        }else {
+            console.log(cookie_name,' Already Seen.');
+        }
+    });
+
+    // close msg
+    $('.close').click(function() {
+        var parent = $(this).closest('.closing');
+        parent.hide();
+        if(parent.data('cookie')){
+            console.log('set-cookie: ', parent.data('cookie'));
+            $.cookie(parent.data('cookie'), true, { expires: 1 });
+        }
+    });
+
+    // reveal "more"
+    $('.notifications .inner').click( function() {
+        console.log($(this).find('.more'));
+        $(this).find('.more').toggleClass('show');
+    });
+</script>

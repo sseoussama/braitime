@@ -1,0 +1,31 @@
+
+<h3>Quick Adds</h3>
+
+{{#each products.featured}}
+	<div class="upsell-item animated slideInLeft">
+
+		{{!-- img --}}
+        <a href="{{url}}" class="upsell-img-container">
+            <img 
+            	class="upsell-image lazyload" 
+            	data-sizes="auto" 
+            	src="{{cdn 'img/loading.svg'}}" 
+            	data-src="{{getImage image 'productgallery_size' (cdn theme_settings.default_image_product)}}" 
+            	alt="{{image.alt}}" 
+            	title="{{image.alt}}"
+            >
+        </a>
+
+        {{!-- name --}}
+        <a href="{{url}}" class="name">
+        	<h6>{{name}}</h6>{{product.options}}
+        </a>
+
+
+        {{!-- add button --}}
+        <div class="cloudnav_quick_addtocart_{{id}} quick-add-btn"></div>
+    </div>
+    {{> components/products/addtocart-cloudnav quick='quickadd'}}
+{{/each}}
+
+

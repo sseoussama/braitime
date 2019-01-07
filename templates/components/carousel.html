@@ -1,0 +1,69 @@
+ 
+<div class="pr car-container">
+    <section class="heroCarousel slick-initialized1"
+        data-slick='{
+            "dots": true,
+            "mobileFirst": true,
+            "slidesToShow": 1,
+            "slidesToScroll": 1,
+            "autoplay": true,
+            "autoplaySpeed": {{carousel.swap_frequency}},
+            "lazyLoad": "ondemand",
+            "touchThreshold": 9,
+            "infinite": true,
+            "fade": true,
+            "cssEase": "linear"
+        }'
+        style="background: #151329;">
+       
+        {{#each carousel.slides}}
+<a href="{{url}}" class="{{#if url '===' 'http://void'}}disable{{/if}} *{{url}}*">
+            <div 
+                class="heroCarousel-slide"
+                {{#if heading}}
+                    style="
+                        background: url({{image}}) fixed !important;
+                        background-size: cover !important;
+                    "
+                {{/if}}
+            >
+                
+
+                    {{!-- data-lazy="{{image}}" --}}
+                <img 
+                    class="heroCarousel-image"
+                    src="{{image}}"
+                    alt="{{alt_text}}"
+                    title="{{alt_text}}"
+                    style="opacity: 0;" 
+                    {{#if image_width}}
+                        width="{{image_width}}"
+                    {{/if}}
+                    {{#if image_height}}
+                        height="{{image_height}}"
+                    {{/if}}
+                />
+
+
+                {{#if heading}}
+                    {{> components/carousel-content bg=image show_background=true}}
+                {{else}}
+                    {{#if text}}
+                        {{> components/carousel-content show_background=true}}
+                    {{else}}
+                        {{#if button_text}}
+                            {{> components/carousel-content show_background=false}}
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+            </div>
+        </a>
+        {{/each}}
+
+
+    </section>
+    {{> components/cloudnav/car_banners }}
+</div>
+     <!-- <div class="test">
+         <img src="{{cdn 'img/test.svg'}}">
+     </div> -->

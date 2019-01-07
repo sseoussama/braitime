@@ -1,0 +1,78 @@
+---
+products:
+    new:
+        limit:
+category:
+    shop_by_price: true
+    products:
+        limit: 40
+---
+{{inject "categoryProductsPerPage" 40}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+
+{{!--  <article class="footer-info-col footer-info-col--small" data-section-type="footer-brands">
+    <h5 class="footer-info-heading">{{lang 'footer.brands'}}</h5>
+    <ul class="footer-info-list">
+        {{#each shop_by_brand}}
+            <li>
+                <a href="{{url}}">{{name}}</a>
+            </li>
+        {{/each}}
+        <li><a href="{{urls.brands}}">{{lang 'common.view_all'}}</a></li>
+    </ul>
+</article> --}}
+
+<div class="inside-header m">
+    {{#if category.image}}
+        <img class="lazyload cat" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage category.image 'zoom_size'}}">
+    {{/if}}
+    <div class="head-content {{#if category.image}}hasImage{{/if}}">
+        <br>
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        <h1 class="page-heading">{{category.name}}</h1>
+    </div>
+</div>
+
+<style type="text/css"> .sub-title{max-width: 85%; } </style>
+
+{{#if category.description}}
+    <div class="container">
+        <div class="sub-title cat p2em">{{{category.description}}}</div>
+        <hr class="m0">
+        <br>
+    </div>
+{{/if}}
+
+
+{{{snippet 'categories'}}}
+<div class="page container">
+    {{!-- {{#if category.subcategories}}
+        {{> components/category/sidebar}}
+    {{else if category.faceted_search_enabled}}
+        {{> components/category/sidebar}}
+    {{else if category.shop_by_price}}
+        {{#if theme_settings.shop_by_price_visibility}}
+            {{> components/category/sidebar}}
+        {{/if}}
+    {{/if}} --}}
+    <main class="page-content" id="product-listing-container">
+        {{#if category.products}}
+            {{> components/category/product-listing}}
+        {{else}}
+            <p>{{lang 'categories.no_products'}}</p>
+        {{/if}}
+    </main>
+</div>
+<div id="confirmationPop" class="hide"></div>
+
+{{/partial}}
+{{> layout/base}}

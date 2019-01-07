@@ -1,0 +1,117 @@
+---
+products:
+    new:
+        limit:
+brand:
+    products:
+        limit: {{theme_settings.brandpage_products_per_page}}
+---
+{{inject "brandProductsPerPage" theme_settings.brandpage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.brand.previous}}
+        <link rel="prev" href="{{pagination.brand.previous}}">
+    {{/if}}
+    {{#if pagination.brand.next}}
+        <link rel="next" href="{{pagination.brand.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+
+
+
+
+{{!-- header --}}
+<div class="inside-header m">
+    {{#if brand.image}}
+        <img class="lazyload cat" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage brand.image 'zoom_size'}}">
+    {{/if}}
+    <div class="head-content hasIcon {{#if brand.image}}hasImage{{/if}}">
+        <img class="brandIcon" src="{{cdn 'assets/img/loading.svg'}}" data-brand-img="{{brand.name}}">
+        <br>
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        <h1 class="page-heading">{{brand.name}}</h1>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="meta-description p2em">
+        <p class="sub-title">...</p>
+    </div>
+
+    <hr class="m0">
+    <br>
+</div>
+
+
+
+
+{{!-- admin change icon --}}
+<div class="tac">
+    <form id="upload_form">
+        <!-- <h3>Change Category Icon</h3> -->
+        {{!-- <img src="{{cdn 'assets/img/loading.svg'}}" data-brand-img="{{brand.name}}"> --}}
+        <input type="hidden" class="name" name="name" value="{{brand.name}}">
+        <div class="file">
+          <label class="file-label">
+            <input class="file-input" type="file" name="file">
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Change Brand Icon
+              </span>
+            </span>
+          </label>
+        </div>
+        <!-- <input type="submit" class="submit"> -->
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+{{{snippet 'brand'}}}
+<div class="page container">
+    <aside class="page-sidebar" id="faceted-search-container">
+        {{> components/brand/sidebar}}
+    </aside>
+
+    <main class="page-content" id="product-listing-container">
+        {{#if brand.products}}
+            {{> components/brand/product-listing}}
+        {{else}}
+            <p>{{lang 'brands.no_products'}}</p>
+        {{/if}}
+    </main>
+</div>
+
+
+<script type="text/javascript">
+    console.log($('meta[name=description]').attr("content"));
+    $('p.sub-title').text($('meta[name=description]').attr("content"));
+</script>
+
+{{/partial}}
+{{> layout/base}}
+
+
+
+
+
+
+
+
+
+
+
+

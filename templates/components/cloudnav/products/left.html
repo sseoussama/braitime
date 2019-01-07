@@ -1,0 +1,55 @@
+<div class="product-left">
+
+    <section class="productView-images" data-image-gallery  dz="{{product.id}}">
+        {{#if product.warranty}}
+        <a class="tac features f">
+            <i class="fa fa-plus-circle"></i>
+            features
+        </a>
+        {{/if}}
+        <figure class="productView-image"
+                data-image-gallery-main
+                data-zoom-image="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}"
+                >
+            <div class="productView-img-container">
+                <a href="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}">
+                    <img class="main1 productView-image--default lazyload" 
+                         data-sizes="auto" 
+                         src="{{cdn 'img/loading.svg'}}" 
+                         data-src="{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}"
+                         alt="{{product.main_image.alt}}" title="{{product.main_image.alt}}" data-main-image>
+                </a>
+            </div>
+        </figure>
+        <div class="overlay-feat"><img src="{{product.warranty}}"></div>
+        <ul class="productView-thumbnails"{{#gt product.images.length 10}} data-slick='{
+                "infinite": false,
+                "mobileFirst": true,
+                "slidesToShow": 5,
+                "slidesToScroll": 1
+            }'{{/gt}}>
+            <span class="only-images">
+                {{#each product.images}}
+                    <li class="productView-thumbnail">
+                        <a
+                            class="productView-thumbnail-link"
+                            href="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
+                            data-image-gallery-item
+                            data-image-gallery-new-image-url="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
+                            data-image-gallery-zoom-image-url="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}">
+                            <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage this 'productview_thumb_size' (cdn ../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}">
+                        </a>
+                    </li>
+                {{/each}}
+                <span class="databased"></span>
+            </span>
+            <li class="productView-thumbnail admin-add hide"><a dz-alter="{{product.id}}" class="productView-thumbnail-link"><i class="fa fa-plus"></i></a></li>
+        </ul>
+    </section>
+
+
+</div>
+
+
+
+

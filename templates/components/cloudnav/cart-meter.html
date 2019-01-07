@@ -1,0 +1,101 @@
+<div class="row counter">
+  <div class="tac">
+    <h3>Almost!</h3>
+    <p></p>
+  </div>
+  <div>
+    <div class="counter-in-minicart">
+      <div class="meter js-meter">
+        <div class="meter-bar js-meter-bar"></div>
+        <div class="would" data-tooltip="if this were added" data-placement="bottom"></div>
+        <div class="meter-info"></div>
+        <div class="waypoints"></div> <!-- ticks added in script -->
+      </div>
+      <div class="layers">
+        <div class="layer freeShipping-m" data-tooltip="Free Shipping ($25)" data-placement="bottom">
+          <span class="promo">Free <i class="fa fa-truck"></i></span>
+        </div>
+      </div> <!-- others added in script -->
+    </div>
+  </div>
+</div>
+
+<!-- <div class="layer" data-tooltip="$${gate}" data-placement="bottom"> <span class="promo">${short}</span> </div> -->
+
+<script>
+  $('.js-meter-bar').unbind();
+  var grand_total ="{{cart.grand_total.formatted}}".replace('$','');
+  grand_total = grand_total.replace(',', '');
+  var total = parseFloat(grand_total);
+  var cap = 60;
+  var milestones = []
+
+  total = (total>cap) ? cap : total;
+
+  // progress
+  var progress = grand_total/cap;
+  progress = (progress>1) ? .97*100 : progress*100;
+  
+  // freeShipping
+  newTick('freeShipping', 25, 'Shipping', 'Free Shipping');
+  // newTick('tenOff', 100, '10%', '10% Off');
+  // newTick('twentyOff', 200, '20%', '20% Off', 'left');
+
+
+  // set progress
+  $('.js-meter-bar').css('width', progress+'%');
+
+  // Change Messge if goal reached
+  if(progress>96) {
+    $('.tac h3').text('You Qualify for Free Shipping.')
+  }
+
+  function newTick(name, gate, short, long, placement) {
+    placement = (placement) ? placement : 'bottom';
+    var awarded = (gate<=total);
+    var x = parseFloat((gate/cap)*100)+'%';
+    var t = `<div class="layer" style="margin-left:${x}" data-tooltip="${long} ($${gate}+)" data-placement="${placement}"> <span class="promo">${short}</span> </div>`
+    var manual = $(`.${name}-m`);
+   
+    // place waypoint
+    $('.waypoints').append(`<div class="waypoint" style="margin-left:${x}"></div>`);
+    
+    // append layer or just set margin
+    if (manual.length) {
+      $(`.${name}-m`).css('margin-left',x);
+    }else {
+      $('.layers').append(t);
+    }
+
+    // milestones
+    if(!awarded) {
+      milestones.push({
+        fault: gate-total,
+        msg: `You are $${parseFloat(gate-total).toFixed(2)} away from getting ${long}!`
+      });
+    }
+  }
+
+  function SortByFault(a, b){
+    var aa = a.fault;
+    var bb = b.fault; 
+    return ((aa < bb) ? -1 : ((aa > bb) ? 1 : 0));
+  }
+  // milestones.sort(SortByName);
+  // milestones.sort(SortByFault)
+  // $('.tac p').html(milestones[0].msg);
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+

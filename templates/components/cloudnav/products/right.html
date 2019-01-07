@@ -1,0 +1,125 @@
+<div class="product-right">
+	
+	<!-- alerts -->
+	<div class="product-alerts">
+		{{#each product.reviews.messages}}
+	        {{#if error}}
+	            {{> components/common/alert-error error}}
+	        {{/if}}
+	        {{#if success}}
+	            {{> components/common/alert-success success}}
+	        {{/if}}
+	    {{/each}}
+    </div>
+
+	<div class="right-head">
+		
+		<!-- title -->
+		{{!-- {{inject "myProductName" product.title}} --}}
+
+		<p><small>{{product.sku}}</small></p>
+<h1 style="margin-left: -14px !important;">{{product.title}}</h1>
+		
+		<!-- brand -->
+		<h2>
+            <a href="{{product.brand.url}}"><span>{{product.brand.name}}</span></a>
+        </h2>
+
+        {{!-- ratings --}}
+        {{#if settings.show_product_rating}}
+        <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}" {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}}>
+	        <div class="newRate">
+				{{> components/products/ratings rating=product.rating}}
+			</div>
+			{{> components/products/modals/writeReview}}
+		</a>
+		 {{/if}}
+
+        <!-- price -->
+		<h3 class="mobile-only yellow">
+           {{> components/cloudnav/products/price}}
+        </h3>
+
+        <!-- tabs -->
+        {{> components/cloudnav/products/tabs}}
+
+        {{!-- add-form (options) --}}
+        <section class="productView2-details">
+		    <div class="productView2-options">
+		        {{#if product.release_date }}
+		            <p>{{product.release_date}}</p>
+		        {{/if}}
+		        <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-cart-item-add>
+		            <input type="hidden" name="action" value="add">
+		            <input type="hidden" name="product_id" value="{{product.id}}"/>
+		                {{#each product.customizations}}
+		                    {{{dynamicComponent 'components/products/customizations'}}}
+		                {{/each}}
+		            <div data-product-option-change style="display:none;">
+		                {{#each product.options}}
+		                	<h3>{{this.display_name}}</h3>
+		                    {{{dynamicComponent 'components/products/options'}}}
+		                {{/each}}
+		            </div>
+		            {{#if product.event_date}}
+		                {{> components/products/event-date}}
+		            {{/if}}
+		            <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
+		                <label class="form-label form-label--alternate">
+		                    {{lang 'products.current_stock'}}
+		                    <span data-product-stock>{{product.stock_level}}</span>
+		                </label>
+		            </div>
+		            <div class="o0">
+			            {{#if product.can_purchase}}
+			                {{> components/products/add-to-cart}}
+			            {{/if}}
+		            </div>
+		            {{#if product.out_of_stock}}
+		                {{#if product.out_of_stock_message}}
+		                    {{> components/common/alert-error product.out_of_stock_message}}
+		                {{else}}
+		                    {{> components/common/alert-error (lang 'products.sold_out')}}
+		                {{/if}}
+		            {{/if}}
+		        </form>
+		    </div>
+		</section>
+
+		{{!-- <section class="product-page-progress">
+			<h3>Savings Meter</h3>
+			{{> components/cloudnav/cart-meter}}
+		</section> --}}
+
+		{{!-- award progress --}}
+		{{!-- <section class="product-page-progress">
+			<h3>Dont Miss Out</h3>
+			{{> components/cloudnav/cart-meter}}
+		</section> --}}
+
+	</div>
+</div>
+
+<script>
+setTimeout( function() {
+	var p_price = parseInt(
+		$('.product-right .price--withoutTax')
+			.text()
+			.replace('$','')
+	);
+	var cta_para = $('.product-right .tac p');
+	var text = cta_para.text();
+	var split = text.split('from');
+	var current_distance = parseFloat(text.substr(text.indexOf('$'), text.indexOf(' ')).replace('$', ''));
+	var new_distance = current_distance-p_price;
+	var t0 = `You would be $${new_distance} from`
+	split[0] = t0;
+	// cta_para.text(split.join(''));
+
+	// would bar
+  	var would = p_price/200;
+  	would = (would>1) ? .97*100 : would*100;
+  	$('.would').css('width', would+'%');
+
+},3000);
+</script>

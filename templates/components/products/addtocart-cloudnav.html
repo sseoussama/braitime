@@ -1,0 +1,47 @@
+
+<a 
+    href="{{add_to_cart_url}}" 
+    data-cart-item-add-{{quick}}
+    data-cart-item-add-2
+    data-wait-message="{{lang 'products.adding_to_cart'}}"
+    class="button hide button--small card-figcaption-button"
+    data-submits="{{id}}"
+>
+    {{lang 'products.add_to_cart'}}
+    {{#if quick}}
+        <i class="fa fa-arrow-right"></i>
+    {{/if}}
+</a>
+
+
+<form data-item-add-{{id}}  class="hide {{quick}}">
+    <input type="text" name="action" value="add">
+    <input type="text" name="product_id" value="{{id}}"/>
+    <input type="text" name="qty[]" value="1">
+    <input type="text" name="url" value="{{url}}">
+    <input id="form-action-addToCart" data-wait-message="{{lang 'products.adding_to_cart'}}" class="button button--primary" type="submit" value="{{#if product.pre_order}}{{lang 'products.pre_order'}}{{else}}{{lang 'products.add_to_cart'}}{{/if}}">
+
+
+    {{!-- still working on accessing options --}}
+    <div data-product-option-change style="display:none;">
+        {{#each options}}
+            <h3>{{this.display_name}}</h3>
+            {{{dynamicComponent 'components/products/options'}}}
+        {{/each}}
+    </div>
+
+
+
+
+
+</form>
+
+{{!-- <div id="previewModal" class="modal modal--large" data-reveal>
+    <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+        <span aria-hidden="true">&#215;</span>
+    </a>
+    <div class="modal-content"></div>
+    <div class="loadingOverlay"></div>
+</div> --}}
+
+

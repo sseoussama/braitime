@@ -1,0 +1,46 @@
+<style type="text/css">
+    @media (min-width: 801px){
+        .body {
+            margin-top: 2.5rem; 
+        }
+    }
+</style>
+
+<!-- pre-compiled upload template -->
+<div class="prevv hide">
+    <div class="dz-preview dz-file-preview">
+        <img data-dz-thumbnail />
+        <div class="confirm-upload">
+            <div class="dz-details">
+                <div class="dz-filename"><span data-dz-name></span></div>
+                <div class="dz-size" data-dz-size></div>
+            </div>
+            <a class="button db save">publish</a>
+            <a class="button db cancel" data-dz-remove>Cancel</a>
+            <div class="dz-progress">
+                <span class="dz-upload" data-dz-uploadprogress></span>
+            </div>
+            <!-- <div class="dz-success-mark"><span>✔sdfsdf</span></div> -->
+            <!-- <div class="dz-error-mark"><span>adfasdfsdf✘</span></div> -->
+            <div class="dz-error-message"><span data-dz-errormessage></span></div>
+        </div>
+    </div>
+</div>
+<!-- contextmenu -->
+<ul class="contextMenu" id="context_dz1" hidden>
+    <form id="contextForm">
+        <div class="info mono">
+            <p class="z_id">zone_id: <span class="zone_id"></span></p>
+            <p class="dims"></p>
+        </div>
+        <input type="hidden" name="zone" class="zone disabled">
+        <label class="mono">image url</label>
+        <input type="text" name="image" class="image">
+        <label class="mono">link path</label>
+        <input type="text" name="path" class="path">
+        <label class="mono">SEO Text</label>
+        <input type="text" name="alt" class="alt">
+        <br>
+        <input type="submit" value="publish" class="button green-bg white">
+    </form>
+</ul>

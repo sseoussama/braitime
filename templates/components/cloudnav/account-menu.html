@@ -1,0 +1,69 @@
+
+{{!-- icon menu --}}
+<div class="icon-menu">
+	<ul class="inline">
+
+		{{!--
+		<li class="icon-itm a--account">
+			<a href="{{urls.account.index}}" class="lv1">
+				<i class="fa fa-user" aria-hidden="true"></i>
+			</a>
+			<div class="dropdown-menu fixed" id="cart-preview-dropdown1" data-dropdown-content aria-hidden="true">
+				{{> components/cloudnav/cart-preview}}
+			</div>
+		</li> --}}
+		
+		{{!-- item CART--}}
+		<li class="icon-itm a--account pr">
+			<a
+            class="navUser-action2 lv1 dfs">
+				<i class="fa fa-user" aria-hidden="true"></i>
+			</a>
+			<div class="account_drop">
+				{{> components/cloudnav/account-links}}
+			</div>
+		</li>
+
+
+		{{!-- item CART--}}
+		<li class="icon-itm a--cart">
+			<a
+            class="navUser-action2 lv1"
+            data-cart-preview
+            data-dropdown="cart-preview-dropdown1"
+            data-options="align:right"
+            href="{{urls.cart}}">
+				<i class="fa fa-shopping-basket" aria-hidden="true"></i>
+				{{#if cart.items}}<span class="badge qty">{{cart.quantity}}</span>{{/if}}
+			</a>
+			<div class="dropdown-menu fixed" id="cart-preview-dropdown1" data-dropdown-content aria-hidden="true">
+				{{!-- {{> components/cloudnav/cart-preview}} --}}
+			</div>
+		</li>
+
+	</ul>
+</div>
+
+<script>
+	$('.dfs').click(function(e){
+		e.preventDefault();
+		console.log('trying');
+		if($('.account_drop').hasClass('is-open')){
+			$('.account_drop').removeClass('is-open');
+		}else{
+			$('.account_drop').addClass('is-open');
+		}
+	});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

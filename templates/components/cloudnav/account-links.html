@@ -1,0 +1,38 @@
+<ul class="account-links">
+
+{{!-- account links --}}
+{{#if settings.account_creation_enabled}}
+  {{#unless customer.id}}
+
+	{{!-- NOT logged in --}}
+    <li><a href="{{urls.auth.login}}">{{lang 'common.login'}}</a></li>
+    <li><a href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a></li>
+
+
+
+	{{!-- logged in --}}
+  {{else}}
+  	<li class="authed"><h6>{{customer.email}}</h6></li>
+    <li class="authed"><a href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a>
+	</li>
+	{{#if settings.returns_enabled}}<li class="authed"><a href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a></li>
+	{{/if}}
+	<li class="authed"><a href="{{urls.account.inbox}}">{{lang 'account.mobile_nav.messages'}}</a>
+	</li>
+	<li class="authed"><a href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</span></a>
+	</li>
+	{{!-- <li class="authed"><a href="{{urls.account.wishlists.all}}">{{lang 'account.mobile_nav.wishlists'}}</a>
+	</li> --}}
+	<li class="authed"><a href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a>
+	</li>
+	<li class="authed"><a href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a>
+	</li>
+	<hr class="authed">
+    <li class="authed"><a href="{{urls.auth.logout}}">Logout</a></li>
+  	<li class="hide welcome"><a href="{{urls.account.inbox}}">{{customer.email}}</a></li>
+
+
+  {{/unless}}
+{{/if}}
+
+</ul>

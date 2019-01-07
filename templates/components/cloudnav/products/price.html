@@ -1,0 +1,12 @@
+{{#if product.call_for_price}}
+    <p class="price-container">
+        <span>{{product.call_for_price}}</span>
+    </p>
+{{/if}}
+<div class="price-container">
+    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+        {{> components/products/price price=product.price schema_org=schema}}
+    {{else}}
+        {{> components/common/login-for-pricing}}
+    {{/or}}
+</div>

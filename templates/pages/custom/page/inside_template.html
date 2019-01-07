@@ -1,0 +1,36 @@
+{{#partial "page"}}
+
+
+  <article class="module-page-container INSIDE layout-container1">
+    <div class="block-content1 rte">
+      {{#replace '%%Syndicate%%' page.content}}
+      {{else}}
+       {{!-- <div class="content1">{{> components/custom/b2b}}</div> --}}
+       <!-- head -->
+        <div class="inside-header">
+          <div class="head-content">
+            <h1>{{ page.title }}</h1>
+            <p class="sub-title">...</p> {{!-- see script --}}
+            {{> components/cloudnav/faq-add-form}}
+          </div>
+        </div>
+      {{/replace}}
+
+      <div class="content_">
+        <div class="container">
+          {{{page.content}}}
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+{{/partial}}
+
+{{> layout/base}}
+
+<script type="text/javascript">
+  $('p.sub-title').text($('meta[name=description]').attr("content"));
+</script>
+
+

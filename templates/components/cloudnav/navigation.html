@@ -1,0 +1,135 @@
+<nav class="navPages">
+    <div class="navPages-quickSearch">
+        {{> components/common/quick-search}}
+    </div>
+    <ul class="navPages-list">
+        
+        {{!-- shop by style --}}
+        {{!-- <li class="navPages-item" data-mega-toggle="_brands"> --}}
+           {{!-- <a class="navPages-action" href="javascript:void(0)">shop by style</a> --}}
+           {{!-- brand-drop --}}
+        {{!-- </li> --}}
+
+        {{!-- catelog --}}
+        {{#each categories}}
+        {{#if @index '<' 4}}
+            <li class="navPages-item category-{{name}} category-{{id}}">
+                <a class="navPages-action" href="{{url}}">{{name}}</a>
+            </li>
+        {{/if}}
+        {{/each}}
+        
+        {{!-- about --}}
+        <li class="navPages-item hide">
+           <a class="navPages-action" href="/style">About</a>
+        </li>
+
+        {{!-- search trigger --}}
+        <li class="navPages-item" data-mega-toggle="_search">
+            <a href="javascript:void(0)" class="navPages-action"><i class="fas fa-search"></i></a>
+        </li>
+                
+        {{!-- pages --}}
+        {{!-- {{#unless theme_settings.hide_content_navigation}}
+            {{#each pages}}
+                 <li class="navPages-item navPages-item-page">
+                     <a class="navPages-action" href="{{url}}">{{name}}**</a>
+                 </li>
+             {{/each}}
+        {{/unless}} --}}
+
+    </ul>
+</nav>
+
+<div id="_search" class="mega">{{> components/cloudnav/mega-search}}</div>
+<div id="_brands" class="mega">{{> components/cloudnav/maga-brands }}</div>
+
+
+<script>
+    var m_trigger = $('[data-mega-toggle]');
+    var o = 'is-open';
+    var $header = $('.header');
+    var a_class = "is-active1";
+
+    m_trigger.click( function(e){
+        console.log('m_trigger.click');
+        var 
+            $this = $(this),
+            data = $this.data('mega-toggle'),
+            data_el = $('#'+data),
+            isOpen = data_el.hasClass(o),
+            input = $('#'+data+':first *:input[type!=hidden]:first').focus()
+        ;
+
+        $('.'+o).removeClass(o);
+        $('.'+a_class).removeClass(a_class);
+
+        (isOpen) ? close(data_el, $this) : opeN(data_el, $this);
+        $('#'+data+':first *:input[type!=hidden]:first').focus();
+        scroll_listener(data_el, $this);
+        bodyClickListen(data_el, $this)
+    });
+    
+    function close(data_el, $t){
+        $t.removeClass(a_class);
+        $header.removeClass('dark-bg');
+        data_el.removeClass(o);
+    }
+
+    function opeN(data_el, $t){
+        $t.addClass(a_class);
+        $header.addClass('dark-bg');
+        data_el.addClass(o);
+    }
+
+    function bodyClickListen(data_el, $t) {
+        $('body').unbind();
+        $('body').click(function(e) {
+             if ($(e.target).closest('.mega').length === 0) {
+                close(data_el, $t);
+             }
+        });
+
+    }
+
+    function scroll_listener(data_el, $t) {
+        $(window).unbind();
+        $(window).scroll(function() {
+            var y_scroll_pos = window.pageYOffset;
+            var scroll_pos_test = 100;
+            if(y_scroll_pos > scroll_pos_test) {
+                // console.log('SCROLLED');
+             $("body").addClass('scrolled');
+             close(data_el, $t);
+            }
+            else {
+                // console.log('UN-SCROLLED');
+              $("body").removeClass('scrolled');
+            }
+        });
+    }
+
+    megaTop();
+    function megaTop() {
+        setTimeout( function() {
+            var headerHeight = $('header').outerHeight();
+            $('.mega').css('top', headerHeight+'px');
+        },1000);
+    }
+
+    function hasC (element, className) {
+      return new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className);
+    }
+
+    // limit();
+    // function limit() {
+    //     $('.navPages-list li').hide();
+    //     $('.navPages-list li:gt(3)').show();
+    // }
+</script>
+
+
+
+
+
+

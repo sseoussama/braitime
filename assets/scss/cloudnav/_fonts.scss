@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700');
+@import url('https://fonts.googleapis.com/css?family=Barlow:400,600,700|Bowlby+One+SC');
+
+@mixin newFont($fontName) {
+	@font-face {
+	    src: url('/fonts/$fontName/$fontName.eot');
+	    src: url('/fonts/$fontName/$fontName.eot') format('embedded-opentype'),
+	         url('/fonts/$fontName/$fontName.woff2') format('woff2'),
+	         url('/fonts/$fontName/$fontName.woff') format('woff'),
+	         url('/fonts/$fontName/$fontName.ttf') format('truetype'),
+	         url('/fonts/$fontName/$fontName.svg#$fontName') format('svg');
+	}
+}
+
+//================ ChronicleDisplay-Bold ================//
+@include newFont(ChronicleDisplay-Bold);
+
+.bowlby {
+	font-family: 'Bowlby One SC', cursive !important;
+}
+.barlow {
+	font-family: 'Barlow', sans-serif !important;
+	transform:scale(0.95,1);
+}
+
+
+
+.opens{
+	font-family: 'Open Sans', Arial, "Helvetica Neue", Helvetica, sans-serif !important;
+}
+
+
+.serif {
+	font-family: 'Libre Baskerville', Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+
+.main_font {
+	font-family: 'Open Sans Condensed', 'Open Sans', Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+.curl{
+	@extend .serif;
+	font-style: italic;
+}
+
+.mono{
+	font-family: 'Open Sans Condensed', 'Open Sans', Arial, "Helvetica Neue", Helvetica, sans-serif;
+	text-transform: uppercase;
+    font-size: 0.75em;
+    letter-spacing: 0.1em;
+}

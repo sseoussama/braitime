@@ -1,0 +1,102 @@
+<!-- onclick="renderItems(\{{:slug}})" -->
+<script id="tabs_markup" type="text/x-jsrender">
+  <li>
+      <a href="#\{{:slug}}" data-slug="\{{:slug}}" aria-controls="\{{:slug}}" role="tab" data-toggle="tab">
+        <span>\{{:name}}</span>
+      </a>
+  </li>
+</script>
+
+<script id="category_markup" type="text/x-jsrender">
+  <div role="tabpanel" class="tab-pane" id="\{{:slug}}">
+    <div class="container">
+      <h2 class="heading-primary">\{{:name}} Questions</h2>
+      <div class="accordion">
+        <dl>
+          <div data-questions-\{{:slug}}></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script id="questions_markup" type="text/x-jsrender">
+  \{{if q}}
+  <dt>
+    <a href="#accordion21" data-id="\{{:id}}" data-in="\{{:in}}" aria-expanded="false" aria-controls="accordion21" class="accordion-title accordionTitle js-accordionTrigger">\{{:q}}</a>
+  </dt>
+  <dd class="accordion-content accordionItem is-collapsed" id="accordion21" aria-hidden="true">
+    <p>\{{:a}}</p>
+  </dd>
+  \{{/if}}
+</script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+{{!-- {{{stylesheet '/assets/css/faq.css'}}} --}}
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="faq">
+  <div id="info_tabs" class="content-containe1r">
+
+    <div class="dark-bg">
+      <!-- head -->
+      <div class="info-header text-center">
+        <div class="container1">
+          <h1>What's your trouble bubble?</h1>
+          <p class="sub-title">This is a short list of our most frequently asked questions.</p>
+
+          {{> components/cloudnav/faq-add-form}}
+        </div>
+      </div>
+
+      <!-- tabs -->
+      <ul class="nav nav-tabs m0" role="tablist" data-tabs>
+      </ul>
+    </div>
+
+    <!-- categories -->
+    <div class="tab-content" style="display: block;" data-categories>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

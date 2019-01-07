@@ -1,0 +1,28 @@
+<div class="options-modal tac">
+	
+	<h3>{{product.title}}</h3>
+	
+	<a href="{{product.url}}"><img src="{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}"></a>
+
+
+	<br>
+
+	<br>
+	
+
+<form pop-form class="special">
+    <input type="hidden" name="action" value="add">
+    <input type="hidden" name="product_id" value="{{product.id}}"/>
+    <input type="hidden" name="qty[]" value="1">
+    <input type="hidden" name="url" value="{{product.url}}">
+	<div data-product-option-change>
+	    {{#each product.options}}
+	    	<p class="f">Choose a {{this.display_name}}</p>
+	        {{{dynamicComponent 'components/products/options' use='onEr'}}}
+	    {{/each}}
+	</div>
+</form>
+
+
+
+</div>

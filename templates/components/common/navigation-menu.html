@@ -1,0 +1,44 @@
+<nav class="navPages pr">
+    <div class="navPages-quickSearch">
+        {{> components/common/quick-search}}
+    </div>
+    <ul class="navPages-list">
+        
+        {{!-- shop by style --}}
+        <li class="navPages-item">
+           <a class="navPages-action" href="/style">shop by style</a>
+        </li>
+
+        {{!-- catelog --}}
+        {{#each categories}}
+            <li class="navPages-item category-{{name}}">
+                <a class="navPages-action" href="{{url}}">{{name}}</a>
+            </li>
+        {{/each}}
+        
+        {{!-- about --}}
+        <li class="navPages-item">
+           <a class="navPages-action" href="/style">About</a>
+        </li>
+
+        {{!-- search trigger --}}
+        <li class="navPages-item" data-search="quickSearch" aria-controls="quickSearch" aria-expanded="false">
+            <a href="javascript:void(0)" class="navPages-action"><i class="fas fa-search"></i></a>
+        </li>
+                
+        {{!-- search results --}}
+        <div class="dropdown dropdown--quickSearch" id="quickSearch" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+            {{> components/common/quick-search}}
+        </div>
+
+        {{!-- pages --}}
+        {{!-- {{#unless theme_settings.hide_content_navigation}}
+            {{#each pages}}
+                 <li class="navPages-item navPages-item-page">
+                     <a class="navPages-action" href="{{url}}">{{name}}**</a>
+                 </li>
+             {{/each}}
+        {{/unless}} --}}
+
+    </ul>
+</nav>

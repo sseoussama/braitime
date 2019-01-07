@@ -1,0 +1,79 @@
+<div class="cta-bar">
+	{{!-- <section class="product-page-progress"> --}}
+		{{!-- <h3>Dont Miss Out</h3> --}}
+		{{!-- {{> components/cloudnav/cart-meter}} --}}
+	{{!-- </section> --}}
+	<div class="level is-mobile">
+		<div class="level-left">
+			<div class="hide-on-mobile">
+				{{> components/cloudnav/products/price}}
+				{{> components/products/bulk-discount-rates}}
+			</div>
+		</div>
+		<div class="level-right">
+
+
+			<div class="min-cta">
+				{{#if product.can_purchase}}
+	                {{> components/products/add-to-cart}}
+	            {{else}}
+	            	<p class="f p1em">Temporarily Unavailable</p>
+	            {{/if}}
+	            {{#if product.out_of_stock}}
+	            <h1>out</h1>
+	                {{#if product.out_of_stock_message}}
+	                    {{> components/common/alert-error product.out_of_stock_message}}
+	                {{else}}
+	                    {{> components/common/alert-error (lang 'products.sold_out')}}
+	                {{/if}}
+	            {{/if}}
+	            {{#if product.event_date}}
+	                {{> components/products/event-date}}
+	            {{/if}}
+	            <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
+	                <label class="form-label form-label--alternate">
+	                    {{lang 'products.current_stock'}}
+	                    <span data-product-stock>{{product.stock_level}}</span>
+	                </label>
+	            </div>
+			</div>
+
+
+
+		</div>
+	</div>
+</div>
+
+
+
+{{!-- after add to cart modal --}}
+<div id="previewModal" class="modal modal--large" data-reveal>
+    <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
+        <span aria-hidden="true">&#215;</span>
+    </a>
+    <div class="modal-content"></div>
+    <div class="loadingOverlay"></div>
+</div>
+
+<div id="confirmationPop" class="hide"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

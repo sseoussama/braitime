@@ -1,0 +1,11 @@
+{{> components/products/filter sort=pagination.category.sort}}
+<form action="{{urls.compare}}" method='POST' data-product-compare>
+	<form></form>
+    {{#if theme_settings.product_list_display_mode '===' 'grid'}}
+        {{> components/products/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings grooms=grooms}}
+    {{else}}
+        {{> components/products/list products=category.products show_compare=category.show_compare theme_settings=theme_settings grooms=grooms}}
+    {{/if}}
+</form>
+
+{{> components/common/paginator pagination.category}}

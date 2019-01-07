@@ -1,0 +1,46 @@
+
+
+{{#partial "page"}}
+
+
+  <article class="module-page-container layout-container1">
+    <div class="block-content1 rte">
+      {{#replace '%%Syndicate%%' page.content}}
+      {{else}}
+       <div class="content1">{{> components/custom/faq}}</div>
+      {{/replace}}
+
+      {{#if page.feed}}
+        <ul>
+          {{#each page.feed}}
+            <li>
+              <h5><a href="{{url}}" target="_blank">{{{title}}}</a></h5>
+              {{#if content}}
+                test
+              	<p>{{{content}}}</p>
+              {{/if}}
+            </li>
+          {{/each}}
+        </ul>
+      {{/if}}
+    </div>
+  </article>
+
+{{/partial}}
+
+{{> layout/base}}
+
+
+
+<script>
+	// var length = $('.content1').html().length;
+	// var d = "hi"+Handlebars.compile("components/header/dropdown-pages");
+
+	// if(length <5){
+	// 	console.log('length is LESS than 2 chars.('+length+")")+$(".page-title").html().length;
+	// 	$(".custom-content").removeClass('hide').text(c).html();
+	// }else{
+	// 	$('.content1').removeClass('hide');
+	// 	console.log('length is MORE than 2 chars.('+length+")")+$(".page-title").html().length;
+	// }
+</script>

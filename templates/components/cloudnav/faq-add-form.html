@@ -1,0 +1,45 @@
+<!-- contextmenu -->
+<ul class="contextMenu" id="context_dz1" hidden>
+    <form id="contextForm">
+
+        <!-- select category -->
+		<p class="form-g">
+        	<label class="mono">Category</label>
+			<select name="category" id="categoryS" data-categories-select>
+				<option value="null">Select a Category</option>	
+				<option value="new">new*</option>
+			</select>
+		</p>
+
+		<!-- new category -->
+		<p class="p-new hide form-g">
+			<label class="mono">New Category Name</label>
+			<input type="text" id="category" name="category" required>
+		</p>
+
+		<!-- Question -->
+		<p class="form-g">
+			<label class="mono">Question</label>
+			<input type="text" id="question" name="question" required>
+		</p>
+
+		<!-- answer -->
+		<p class="form-g">
+			<label class="mono">answer</label>
+			<input type="text" id="answer" name="answer" required>
+		</p>
+
+		<!-- submit -->
+        <hr>
+        <input type="submit" value="publish" class="button green-bg white">
+    	<a class="red mono hide">remove question</a>
+
+    </form>
+
+</ul>
+
+
+
+<script id="category_select" type="text/x-jsrender">
+	<option class="added" value="\{{:slug}}">\{{:name}}</option>	
+</script>

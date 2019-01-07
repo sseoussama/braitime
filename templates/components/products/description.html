@@ -1,0 +1,44 @@
+<div class="description">
+    {{{product.description}}}
+    {{{snippet 'product_description'}}}
+</div>
+<a class="showMore showButton hide">Show More</a>
+<a class="showLess showButton hide">Show Less</a>
+
+{{!-- {{#if product.warranty}}
+    <p class="productView-title">{{lang 'products.warranty'}}</p>
+    <div class="productView-description">
+        {{{product.warranty}}}
+    </div>
+{{/if}} --}}
+
+
+
+
+
+<script>
+setTimeout(() => {
+    var $desc = $('.description');
+    var $showMore = $('.showMore');
+    var $showLess = $('.showLess');
+    var tooTall = $desc.innerHeight() >= 105;
+
+    // reveal "show more"
+    if(tooTall){ $showMore.removeClass('hide'); }
+
+    // Click "showMore"
+    $showMore.click( function() {
+        $desc.addClass('open');
+        $showMore.addClass('hide');
+        $showLess.removeClass('hide');
+    });
+    
+    // Click "showLess"
+    $showLess.click( function() {
+        $desc.removeClass('open');
+        $showLess.addClass('hide');
+        $showMore.removeClass('hide');
+    });
+
+}, 1000);
+</script>

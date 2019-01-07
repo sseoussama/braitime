@@ -1,0 +1,26 @@
+{{#partial "page"}}
+
+
+  <article class="module-page-container custom-designs INSIDE layout-container1">
+    <div class="block-content1 rte">
+      {{#replace '%%Syndicate%%' page.content}}
+      {{else}}
+      {{/replace}}
+
+      <div class="content1">
+          {{!-- {{{page.content}}} --}}
+          {{> components/custom/custom-designs}}
+      </div>
+
+    </div>
+  </article>
+
+{{/partial}}
+
+{{> layout/base}}
+
+<script type="text/javascript">
+  $('[sub]').text($('meta[name=description]').attr("content"));
+</script>
+
+

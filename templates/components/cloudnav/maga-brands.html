@@ -1,0 +1,14 @@
+<div class="maga-brands">
+    <div class="narrow-container columns is-mobile">
+    {{#each shop_by_brand}}
+        <div class="column">
+            <a href="{{url}}">
+				<img src="{{cdn 'assets/img/loading.svg'}}" data-brand-img="{{name}}">
+                <p>{{name}} {{img}}</p>
+            </a>
+        </div>
+    {{/each}}
+    </div>
+</div>
+
+

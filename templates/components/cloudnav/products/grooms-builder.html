@@ -1,0 +1,180 @@
+
+<div class="grooms-builder" id="start">
+	
+	<div class="choose-qty">
+		<div class="tac headin"><div class="h1" data-number="1">How many?</div></div>
+
+		{{!-- quant --}}
+		<div id="quant">
+			<div class="inner">
+				{{!-- <div class="dec"><i class="fa fa-minus"></i></div> --}}
+				{{!-- <input type="number" class="number"></input> --}}
+				{{!-- <div class="inc"><i class="fa fa-plus"></i></div> --}}
+				<div class="field has-addons">
+				  <div class="control">
+				    <a class="btn is-info dec"><i class="fa fa-minus"></i></a>
+				  </div>
+				  <div class="control">
+				    <input data-Qty type="number" class="input numberr p0"></input>
+				  </div>
+				  <div class="control">
+				    <a class="btn is-info inc"><i class="fa fa-plus"></i></a>
+				  </div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	
+	<hr>
+	
+	<div class="choose-style">
+		<div class="tac headin"><div class="h1 tac" data-number="2">Choose A Style</div></div>
+	</div>
+
+
+	{{!-- products --}}
+	<div class="page container GROOM">
+	        {{#if category.subcategories}}
+		        {{> components/category/sidebar}}
+		    {{else if category.faceted_search_enabled}}
+		        {{> components/category/sidebar}}
+		    {{else if category.shop_by_price}}
+		        {{#if theme_settings.shop_by_price_visibility}}
+		            {{> components/category/sidebar}}
+		        {{/if}}
+		    {{/if}}
+		    <main class="page-content" id="product-listing-container">
+		        {{#if category.products}}
+		            {{> components/category/product-listing grooms=true}}
+		        {{else}}
+		            <p>{{lang 'categories.no_products'}}</p>
+		        {{/if}}
+		    </main>
+	</div>
+	
+
+	<div class="add-bar">
+		<div class="container">
+			<div class="level">
+				<div class="level-left">
+					
+					<div class="itm">
+						<label>quantity</label>
+						<div class="Qty">
+							<i class="fa fa-minus dec"></i>
+							<span data-Qty >err</span>
+							<i class="fa fa-plus inc"></i>
+						</div>
+					</div>
+
+					<div class="itm style">
+						<label>Style</label>
+						<span class="data-name">err</span>
+						{{!-- <div class="selected_img">
+							<img src="https://cdn7.bigcommerce.com/s-xba1p2i5uz/product_images/uploaded_images/kelkl7ya.png?t=1533568323&_ga=2.232273247.1536004184.1533501411-1453691217.1526140694">
+						</div> --}}
+					</div>
+
+				</div>
+				<div class="level-right">
+					<div class="inner">
+						<a id="form-action-addToCart" data-grooms-add data-wait-message="Adding to cart…" class="button button--primary">Add to Cart</a>
+						<div class="disclaim">See discounts on cart page.</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+{{!-- submit button will add this to all --}}
+<form data-item-add-groomsD class="grooms-add-default hide">
+    <input type="text" name="action" value="add">
+    <input type="text" name="product_id" value="393">
+    <input type="text" name="qty[]" value="1">
+</form>
+
+
+<form data-item-add-grooms class="grooms-add-form hide">
+    <input type="text" name="action" id="action" value="add">
+    <input type="text" name="product_id" id="pid" value="">
+    <input type="text" name="qty[]" id="qty" value="1">
+</form>
+
+<div class="didntSelect tac">
+	<hr>
+	<h3 class="red">Please Select a Sock Style Before Adding to Cart</h3>
+	<br>
+	<a id="form-action-addToCart" class="button button--primary disabled">Add to Cart</a>
+</div>
+
+
+
+{{!-- quant --}}
+<script type="text/javascript">
+	var gates = [6,10,15,20];
+	var dec = $( '.dec' );
+	var inc = $( '.inc' );
+	var $number = $( '[data-Qty]' );
+	var moq = 6;
+
+	dec.click( e=> { onQty( parseInt($number.val()) -1 ) } );
+	inc.click( e=> { onQty( parseInt($number.val()) +1 ) } );
+
+	function onQty(offset) {
+		var qty = (offset<moq) ? moq : offset;
+		dec.attr( 'disabled', (qty<moq+1) ? true : false );
+		$number.val(qty);
+		$number.text(qty);
+		$('[data-item-add-grooms] #qty').val(qty);
+		// award(qty) //later
+	}
+
+	function award(qty) {
+		var i;
+		for (i = 0; i < award.length; ++i) {
+		    var ths = substr[i];
+		    //finish later
+		}
+	}
+
+	styleSelected();
+	function styleSelected() {
+		$('.grooms-overlay').click( function() {
+			var selected = $(this).data('pid');
+			var already = $('.data-name').text();
+			var name = $(this).data('name');
+			if(already===name) {
+				$('.add-bar').hide();
+				$('.data-name').text('');
+				$(this).removeClass('selected');
+				$('.didntSelect').show();
+				return;
+			}
+
+			$('.didntSelect').hide();
+
+			$('[data-item-add-grooms] #pid').val(selected);
+			$('.data-name').text(name);
+			$('.add-bar').show();
+			$('.selected').removeClass('selected');
+			$(this).addClass('selected');
+		})
+	}
+
+	onQty(moq);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

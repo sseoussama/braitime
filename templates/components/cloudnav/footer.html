@@ -1,0 +1,120 @@
+<footer id="footer" class="footer">
+
+	<div class="container">
+		<div class="columns p2em is-mobile">
+
+
+			{{!-- logo --}}
+			<div class="column ink-logo is-2">
+				<div class="lg-contain">
+					{{!-- {{cdn 'img/logo_wht.svg'}} --}}
+					<img src="https://image.flaticon.com/icons/png/512/197/197562.png">
+				</div>
+
+
+				{{!-- {{#if theme_settings.social_icon_placement_bottom '!==' 'bottom_none'}} --}}
+				<article class="footer-info-col tac
+								footer-info-col--social
+								footer-info-col--{{#if theme_settings.social_icon_placement_bottom '===' 'bottom_left'}}left{{else}}right{{/if}}"
+				data-section-type="footer-webPages">
+					{{> components/common/social-links}}
+				</article>
+				{{!-- {{/if}} --}}
+
+
+			</div><div class="column is-1"></div>
+
+
+			{{!-- catalogue --}}
+			<div class="column catalogue">
+				<h3>{{lang 'footer.categories'}}</h3>
+				<ul>
+					{{#each categories}}
+					<li>
+						<a href="{{url}}">{{name}}</a>
+					</li>
+					{{/each}}
+				</ul>
+			</div>
+
+
+
+			{{!-- brands --}}
+			{{#and theme_settings.shop_by_brand_show_footer shop_by_brand.length}}
+			<div class="column brands">
+				<h3>{{lang 'footer.brands'}}</h3>
+				<ul>
+	                {{#each shop_by_brand}}
+	                    <li>
+	                        <a href="{{url}}">{{name}}</a>
+	                    </li>
+	                {{/each}}
+	            </ul>
+			</div>
+			{{/and}}
+
+
+
+			{{!-- info --}}
+			<div class="column info">
+				<h3>Info</h3>
+				<ul>
+	                {{#each pages}}
+	                    <li>
+	                        <a href="{{url}}">{{name}}</a>
+	                    </li>
+	                {{/each}}
+					{{!-- <li><a href="javascript:void(0)">Social</a></li> --}}
+	                <li><a href="{{urls.sitemap}}">{{lang 'sitemap.page_title'}}</a></li>
+				</ul>
+			</div>
+
+
+			{{!-- account --}}
+			<div class="column info">
+				<h3>Account</h3>
+				<ul>
+					{{> components/cloudnav/account-footer-links}}
+				</ul>
+			</div>
+
+
+
+			{{!-- address --}}
+			<div class="column address">
+				{{!-- <h3>info</h3> --}}
+				{{#if settings.address}}
+		            <article class="" data-section-type="storeInfo">
+		                <address>{{nl2br settings.address}}</address><hr style="opacity: 0.15">
+		                {{#if settings.phone_number}}
+		                    <span>{{lang 'footer.call_us' phone_number=settings.phone_number}}</span>
+		                {{/if}}
+		            </article>
+	            {{/if}}
+			</div>
+
+
+
+
+
+		</div>
+
+        {{> components/cloudnav/newsletter-footer}}
+
+		{{!-- copyright --}}
+		{{#if theme_settings.show_copyright_footer}}
+	        <div class="footer-copyright">
+	            <p class="powered-by">
+	            	<span><a href="https://www.instagram.com/Braaitime" target="_blank">#BraaiTime</a> | </span>
+	            	<span>&copy; {{moment format="YYYY"}} {{settings.store_name}} | </span>
+	            	<span>Authentic South African Biltong &#9825 |</span>
+	            	<span> <a href="mailto:info@braaitime.com" target="_blank">info@braaitime.com</a></span>
+	            </p>
+	        </div>
+	    {{/if}}
+		<br>
+	</div>
+</footer>
+
+
+

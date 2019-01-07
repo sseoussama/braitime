@@ -1,0 +1,113 @@
+// basically repeat above
+$dark_brand: #30261d;
+$dark: #333333;
+$darker: darken($dark, 4%);
+// $dark: #282b39;
+$Ldark: lighten($dark, 3%);
+$light: #F5F5F5;
+$green: #39C178;
+$yellow: #FF9D00;
+$red: #c72e1f;
+$white: #FFFFFF;
+$black: #000000;
+$blue: #1489DD;
+$dblue: #202135;
+$purple: $green;
+$orange: #ff6b00;
+$dgray: #333;
+$facebook: #3B5998;
+$google: #DB4317;
+
+
+$colors:
+	"dark" $dark,
+	"darker" $darker,
+	"Ldark" $Ldark,
+	"light" $light,
+	"green" $green,
+	"yellow" $yellow,
+	"red" $red,
+	"white" $white,
+	"black" $black,
+	"blue" $blue,
+	"dblue" $dblue,
+	"purple" $purple,
+	"orange" $orange,
+	"facebook" $facebook,
+	"google" $google,
+	"dgray" $dgray
+;
+
+
+@each $color in $colors{
+	// .btn-color
+	.btn-#{nth($color, 1)}{
+	    background: nth($color, 2);
+	    color: #fff;
+	}
+	// .color / color
+	.#{nth($color, 1)}, #{nth($color, 1)}{
+	    color: nth($color, 2) !important;
+	    a{
+	        color: nth($color, 2);
+	    }
+	}
+	// .color-bg
+	.#{nth($color, 1)}-bg {
+		background: nth($color, 2) !important;
+	}
+
+	// .color-g
+	.#{nth($color, 1)}-g {
+		background: rgb(30,87,153);
+		background: -moz-linear-gradient(top, nth($color, 2) 0%, adjust-hue(nth($color, 2),15%) 100%);
+		background: -webkit-linear-gradient(top, nth($color, 2) 0%, adjust-hue(nth($color, 2),15%) 100%);
+		background: linear-gradient(to bottom, nth($color, 2) 0%, adjust-hue(nth($color, 2),15%) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color', endColorstr='#7db9e8',GradientType=0 );
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@mixin grad($deg, $c1, $c2, $fixed) {
+	// background-image: -webkit-linear-gradient($deg, $c1, $c2) !important;
+	// background-image: linear-gradient($deg, $c1, $c2) !important;
+	// background-color: $c2;
+	background-image: linear-gradient($deg, $c1, $c2);
+	background-image: -webkit-linear-gradient($deg, $c1, $c2);   
+	background-image:    -moz-linear-gradient($deg, $c1, $c2);
+	background-image:     -ms-linear-gradient($deg, $c1, $c2);
+	background-image:      -o-linear-gradient($deg, $c1, $c2);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: $fixed;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,162 @@
+{{!-- <div class="inside-header m">
+    {{#if category.image}}
+        <img class="lazyload cat" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage category.image 'zoom_size'}}">
+    {{/if}}
+    <div class="head-content {{#if category.image}}hasImage{{/if}}">
+        <br>
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        <h1 class="page-heading">{{category.name}} ***********</h1>
+    </div>
+</div>
+{{#if category.description}}
+    <div class="sub-title cat">{{{category.description}}}</div>
+{{/if}} --}}
+
+
+<div id="grooms" class="animated fadeInUp">
+	<section class="one">
+		<div class="container">
+			<div class="columns">
+				
+				{{!-- left --}}
+				<div class="column g-left is-5">
+					<h2 class="sub">On your most important day, </h2>
+					<h1>get your guys something extra special</h1>
+					<img src="https://s-media-cache-ak0.pinimg.com/originals/89/37/c8/8937c821e3849d1027398a1049d02073.png" class="mobile-only">
+					<p class="f tal">Here's what you'll get!</p>
+					<div class="alist">
+						{{!-- item --}}
+						<div class="list-item columns is-mobile">
+							<div class="column is-2">
+								<div class="img-contain"><img src="{{cdn 'assets/img/brandcons/ds_43.png'}}"></div>
+							</div>
+							<div class="column">
+								<div class="copyhere">
+									<h6>Per Pair Dicount</h6>
+									<p>The more socks you add the better the discount. <a href="#tiers">See Tier Pricing</a>.</p>
+								</div>
+							</div>
+						</div>
+
+						{{!-- item --}}
+						<div class="list-item columns is-mobile">
+							<div class="column is-2">
+								<div class="img-contain"><img src="{{cdn 'assets/img/brandcons/ds_43.png'}}"></div>
+							</div>
+							<div class="column">
+								<div class="copyhere">
+									<h6>Free Groomsmen Wrapping</h6>
+									<p>Add 6 or more of the same sock to your cart the <a href="/grooms-bundle-wrapping/">Grooms Bundle Wrapping</a> will be free</p>
+								</div>
+							</div>
+						</div>
+
+						{{!-- item --}}
+						<div class="list-item columns is-mobile">
+							<div class="column is-2">
+								<div class="img-contain"><img src="{{cdn 'assets/img/brandcons/ds_43.png'}}"></div>
+							</div>
+							<div class="column">
+								<div class="copyhere">
+									<h6>Your choice in style</h6>
+									<p>Choose from any eligible socks. <a href="#start">Eligable Socks</a></p>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					{{!-- <div class="images columns">
+						<div class="contan">
+							<img src="">
+						</div>
+					</div> --}}
+				</div>
+
+				{{!-- right --}}
+				<div class="column g-right"></div>
+
+			</div>
+			<br>
+			<a href="#start" class="button">Get Started</a>
+		</div>
+	</section>
+
+	<section class="two">
+		<div class="container">
+			<div class="columns m0">
+				<div class="column r"></div>
+				<div class="column l">
+					<img src="https://cdn7.bigcommerce.com/s-xba1p2i5uz/product_images/uploaded_images/1lilzksa.jpeg?t=1533587673&_ga=2.132077135.1536004184.1533501411-1453691217.1526140694" alt="" class="mobile-only">
+					<div class="copy">
+						<h3>You choose the color, style, and fit.</h3>
+						<p>From color-coordinated matching sets to customizable for each guy’s personal style, we’ve got the best fitting socks your guys will love. We’ll even let you customize the packaging with your wedding hashtag or name, so each groomsmen will have his own. Our socks are designed and tailored just for you to put the final touch on your line of dapper men, and something they’ll always have to remember that special day with each wear.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="three" id="tiers">
+		<div class="container">
+			
+			<div class="h1">Tier Pricing</div>
+			<p class="f">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+			<div class="tiers level">
+
+				{{!-- item --}}
+				<div class="level-item tier">
+					<div class="content">
+						<div class="top">6+</div>
+						<div class="bottom blue">$25 <span>/ Per Pair</span></div>
+					</div>
+				</div>
+
+				{{!-- item --}}
+				<div class="level-item tier">
+					<div class="content">
+						<div class="top">10+</div>
+						<div class="bottom blue">$23 <span>/ Per Pair</span></div>
+					</div>
+				</div>
+
+				{{!-- item --}}
+				<div class="level-item tier">
+					<div class="content">
+						<div class="top">15+</div>
+						<div class="bottom blue">$21 <span>/ Per Pair</span></div>
+					</div>
+				</div>
+
+				{{!-- item --}}
+				<div class="level-item tier">
+					<div class="content">
+						<div class="top">20+</div>
+						<div class="bottom blue">$19 <span>/ Per Pair</span></div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</section>
+	<div class="qty-selector">
+		
+	</div>
+
+</div>
+
+{{> components/cloudnav/products/grooms-builder}}
+
+
+
+
+
+
+
+
+
+
+
+

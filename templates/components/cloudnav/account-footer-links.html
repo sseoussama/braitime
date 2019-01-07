@@ -1,0 +1,33 @@
+
+{{!-- account links --}}
+{{#if settings.account_creation_enabled}}
+  {{#unless customer.id}}
+
+	{{!-- NOT logged in --}}
+    <li><a href="{{urls.auth.login}}">{{lang 'common.login'}}</a></li>
+    <li><a href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a></li>
+
+
+
+  {{else}}
+		{{!-- logged in --}}
+		<li><a href="{{urls.account.orders.all}}">{{lang 'account.nav.orders'}}</a>
+		</li>
+		{{#if settings.returns_enabled}}<li><a href="{{urls.account.returns}}">{{lang 'account.nav.returns'}}</a></li>
+		{{/if}}
+		<li><a href="{{urls.account.inbox}}">{{lang 'account.mobile_nav.messages'}}</a>
+		</li>
+		<li><a href="{{urls.account.addresses}}">{{lang 'account.nav.addresses'}}</span></a>
+		</li>
+		{{!-- <li><a href="{{urls.account.wishlists.all}}">{{lang 'account.mobile_nav.wishlists'}}</a>
+		</li> --}}
+		<li><a href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a>
+		</li>
+		<li><a href="{{urls.account.details}}">{{lang 'account.nav.settings'}}</a>
+		</li>
+		<li><a href="{{urls.auth.logout}}">Logout</a></li>
+
+
+  {{/unless}}
+{{/if}}
+

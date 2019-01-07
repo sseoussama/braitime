@@ -1,0 +1,132 @@
+<div class="product-tabs">
+	
+	<div class="tab1s">
+	  <ul>
+	    
+	    {{!-- item --}}
+	    <li class="is-active" data-tab="info">
+	      <a>
+	        <span>Product Info</span>
+	      </a>
+	    </li>
+			
+			{{!-- item --}}
+	    {{!-- <li class="is-active" data-tab="bulk">
+	      <a>
+	        <span>Bulk Pricing</span>
+	      </a>
+	    </li> --}}
+	    
+	    {{!-- item --}}
+	    <li data-tab="reviews">
+	      <a>
+	        <span>Reviews </span>
+    		{{#if product.num_reviews '>' 0}}
+				<span>&nbsp;({{product.num_reviews}})</span>
+			{{/if}}
+	      </a>
+	    </li>
+	    
+	    {{!-- item --}}
+	    <li data-tab="share">
+	      <a>
+	        <span>Share</span>
+	      </a>
+	    </li>
+	    
+	    {{!-- item --}}
+	    {{#if settings.show_wishlist}}
+		    <li data-tab="wishlist" class="is-active1">
+		      <a>
+		        <span>Wishlist</span>
+		      </a>
+		    </li>
+	    {{/if}}
+
+	  </ul>
+	  <div class="underline"></div>
+	</div>
+
+	<div class="tab-content-container">
+		<div class="content" id="info">
+			{{> components/products/description}}
+		</div>
+
+		<div class="content" id="bulk">
+			{{> components/products/bulk-discount-rates}}
+		</div>
+		
+		
+		<div class="content" id="science">
+			science
+		</div>
+
+		<div class="content" id="reviews">
+			{{> components/cloudnav/products/reviews}}
+		</div>
+
+		<div class="content" id="share">
+			{{> components/common/share}}
+		</div>
+		
+		{{#if settings.show_wishlist}}
+			<div class="content" id="wishlist">
+				{{#if settings.show_wishlist}}
+	                {{> components/common/wishlist-dropdown}}
+	            {{/if}}
+			</div>
+		{{/if}}
+
+	</div>
+
+</div>
+
+
+
+<script>
+	var trigger = $('[data-tab]');
+	var first_tab = $('[data-tab]:first-child')[0];
+	var active_class = 'is-active';
+	var default_content = $('[data-tab].'+active_class).data('tab');
+
+	// init
+	// first_tab.css('border', '3px solid red');
+	setTimeout(e=>first_tab.click(),2000);
+	$('.content#'+default_content).addClass(active_class);
+	
+	// onClick
+	trigger.click( function() {
+		var self = $(this);
+		var content = $(`.content#${self.data('tab')}`);
+
+		// tab active
+		trigger.removeClass(active_class);
+		self.addClass(active_class);
+
+		//move underline 
+		place_underline($(this));
+
+		// show content
+		$('.content.'+active_class).removeClass(active_class);
+		content.addClass(active_class);
+	});
+
+	function place_underline(target) {
+		console.log("place_underline")
+		var $underline = $('.underline');
+		var activeL = target.position().left;
+		var pos = activeL+'px';    	
+		$underline.css({
+			'margin-left': pos,
+			'width': target.width()+'px'
+		});
+	}
+
+</script>
+
+
+
+
+
+
+

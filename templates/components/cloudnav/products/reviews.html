@@ -1,0 +1,8 @@
+
+<a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}" {{#unless is_ajax }}data-reveal-id="modal-review-form"{{/unless}} class="white-bg dark button b0">
+	Write a Review
+</a>
+
+{{#if settings.show_product_reviews}}
+    {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+{{/if}}

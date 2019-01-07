@@ -1,0 +1,17 @@
+{{!-- newsletter --}}
+{{#if settings.show_newsletter_box}}
+<form class="form1 hide-on-mobile" action="{{urls.subscribe.action}}" method="post">
+	<div id="newsletter_signup" class="level-left">
+		<div class="control has-icons-left has-icons-right">
+		  {{!-- <input class="input is-medium" type="email" placeholder="Sign-up for our newsletter..."> --}}
+		  <input class="input is-medium" id="nl_email" name="nl_email" type="email" value="{{customer.email}}" placeholder="{{lang 'newsletter.email_placeholder'}}">
+		  <span class="icon is-left">
+		    <i class="fa fa-envelope"></i>
+		  </span>
+		  {{!-- <span class="icon is-right">
+		    <i class="fa fa-check"></i>
+		  </span> --}}
+		</div>
+	</div>
+</form>
+{{/if}}

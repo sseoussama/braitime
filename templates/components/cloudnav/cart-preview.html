@@ -1,0 +1,143 @@
+<div class="preview-bg"></div>
+
+<div class="upsell-column animated1 fadeInLeft">
+    {{> components/cloudnav/cart-upsell}}
+</div>
+
+
+<div class="previewCart">
+    {{> components/cloudnav/cart-meter}}
+    {{#if cart.items.length}}
+        <ul class="previewCartList">
+            <br>
+            <h2 class="hide">Items: <span data-cartQuantity>{{cart.quantity}}</span></h2>
+            {{#each (limit cart.items 10)}}
+                <li class="previewCartItem">
+
+                    <a href="{{url}}" alt="{{name}}" title="{{name}}" class="previewCartItem-content columns">
+                        
+                        <!-- image -->
+                        <div href="{{url}}" alt="{{name}}" title="{{name}}" class="column previewCartItem-image">
+                            {{#if type '==' 'GiftCertificate'}}
+                                <img src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate" title="GiftCertificate">
+                            {{else}}
+                                <img src="{{getImage image 'productthumb_size' (cdn ../../theme_settings.default_image_product)}}" alt="{{image.alt}}" title="{{image.alt}}">
+                            {{/if}}
+                        </div>
+
+                        <!-- brand -->
+                        <span class="column previewCartItem-brand hide">
+                            {{brand.name}}
+                        </span>
+                        
+                        
+                        <div class="column previewCartItem-price">
+                            <!-- name -->
+                            <h6 class="column1 previewCartItem-name">
+                                {{!-- <small>{{sku}}</small> --}}
+                                <strong>{{name}}</strong>
+                            </h6>
+                            <!-- price -->
+                            {{#if quantity '>' 1}}
+                                {{quantity}} &times;
+                            {{/if}}
+                            {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                                {{price.formatted}}
+                            {{else}}
+                                {{> components/common/login-for-pricing}}
+                            {{/or}}
+                            
+                            {{#if configurable_fields}}
+                                {{#each (limit configurable_fields 1)}}
+                                    <span class="badge green-bg {{name}}">
+                                        -{{value}}
+                                    </span>
+                                {{/each}}
+                            {{/if}}
+                            <div>
+                            {{#if options}}
+                                {{#each options}}
+                                     <span class="{{name}}">
+                                        <span>{{name}}: </span>
+                                        <strong> {{value}}</strong>
+                                    </span>
+                                {{/each}}
+                            {{/if}}
+                            </div>
+                        </div>
+
+                        <!-- remove -->
+                        <div class="column delete_item" data-cart-itemid="{{id}}"><i class="fas fa-trash"></i></div>
+                        
+
+
+
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+        <div class="previewCartAction">
+            {{> components/cloudnav/cart-mini-totals cart=cart}}
+            <div class="disclaim dark">See discounts on cart page</div>
+            <div class="columns is-multiline">
+                {{#if cart.show_primary_checkout_button}}
+                    <div class="column is-12  previewCartAction-checkout">
+                        <a href="{{urls.checkout.single_address}}" class="button button--small button--primary">
+                            {{lang 'cart.preview.checkout_now'}}
+                        </a>
+                    </div>
+                {{/if}}
+
+                <div class="column  is-12 previewCartAction-viewCart{{#unless cart.show_primary_checkout_button}} previewCartAction-viewCart--sole{{/unless}}">
+                    <a href="{{urls.cart}}" class="button button--small button--action">
+                        {{lang 'cart.preview.view_cart'}}
+                    </a>
+                </div>
+            </div>
+
+            {{#if cart.show_multiple_address_shipping}}
+                <div class="column previewCartAction-checkoutMultiple">
+                    <a href="{{urls.checkout.multiple_address}}">
+                        {{lang 'cart.preview.checkout_multiple'}}
+                    </a>
+                </div>
+            {{/if}}
+        </div>
+    {{else}}
+        <div class="previewCart-emptyBody">
+            {{lang 'cart.checkout.empty_cart'}}
+        </div>
+    {{/if}}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    // function carts() { 
+    //     const appClientId = "fcrfh0dlg9naige3uj7v4m3uhs2v8up";
+    //     const xmlhttp = new XMLHttpRequest();
+    //     xmlhttp.onreadystatechange = function() {
+    //         if (xmlhttp.readyState == 4 ) {
+    //            if (xmlhttp.status == 200) {
+    //                console.info('Customer JWT:\n' + xmlhttp.responseText);
+    //            }else if (xmlhttp.status == 404) {
+    //               console.info('Not logged in!');
+    //            }else {
+    //                console.error('ERROR: ',xmlhttp.status);
+    //            }
+    //         }
+    //     };
+    //     xmlhttp.open("GET", "/api/carts?include=lineItems.physicalItems.options,lineItems.digitalItems.options", true);
+    //     xmlhttp.send();
+    // }
+    // carts();
+</script>​
+
